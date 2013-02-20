@@ -1,0 +1,74 @@
+﻿@model DemoStore.Core.Entities.Cart
+
+@{
+    ViewBag.Title = "Electronics Store : Checkout";
+}
+
+<h2>Billing / Shipping</h2>
+<legend><em>Please enter your details, and we'll ship your goods right away!</em></legend>
+<div id="billingShippingMain">
+    @using (Html.BeginForm("Checkout", "Cart", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+       
+        @Html.ValidationSummary(true)
+        <div class="row">
+            <div class="span6" id="billToAddress">
+                <fieldset>
+                    <legend>Billing Address</legend>               
+                     @Html.EditorFor(m => m.BillingAddress)                    
+                </fieldset>
+            </div>
+            <div class="span6" id="shipToAddress">
+                <fieldset>
+                    <legend>Shiping Address&nbsp;<small>
+                        <input id="billingAsShippingChk" type="checkbox" value="false" />&nbsp;Same as billing address </small></legend>
+                    @Html.EditorFor(m => m.ShippingAddress)
+                </fieldset>
+            </div>
+        </div>
+        <div class="row">
+            <div class="span5">
+                <fieldset>
+                    <legend>Shipping Options</legend>
+                    <label>
+                        @Html.EditorFor(giftWrap => giftWrap.GiftWrap)
+                        Giftwrap these items
+                    </label>
+                </fieldset>
+            </div>
+        </div>
+        
+        <div class="form-actions">
+            <input class="btn btn-primary" type="submit" value="Complete order" />
+        </div>
+       
+        
+    }
+</div>
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#billingAsShippingChk').click(function () {
+                var thisCheck = $(this);
+                if (thisCheck.is(':checked')) {
+                    var billingAddressFieldSelector = '#billToAddress input[type=text]';
+                    var shippingAddressFieldSelector = '#shipToAddress input[type=text]';
+
+                    $(billingAddressFieldSelector).each(function () {
+                        var billingField = $(this);
+                        var billingFieldId = billingField.attr('id').split('_')[1];
+
+                        $(shippingAddressFieldSelector).each(function () {
+                            var shippingField = $(this);
+                            var shippingFieldId = shippingField.attr('id').split('_')[1];
+                            if (shippingFieldId === billingFieldId) {
+                                shippingField.val(billingField.val());
+                            }
+                        });
+                    });
+                }
+            });
+        });
+    </script>
+}

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <!--<link href="@System.Web.Optimization.BundleTable.Bundles.ResolveBundleUrl("~/Content/css")" rel="stylesheet" type="text/css" />-->
+
+    <link href="/Content/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/Content/css/site.css" rel="stylesheet">
+
+    <script src="@System.Web.Optimization.BundleTable.Bundles.ResolveBundleUrl("~/Scripts/js")"></script>
+</head>
+<body>
+
+    <div id="header">
+        <div><img src="../../Content/Css/../images/arvato_hightech_emea_headerlogo.jpg" /></div>
+        <div class="title">Electronics Store</div>
+        @{
+            Html.RenderAction("Summary", "Cart");   
+        }
+    </div>
+
+    <div id="categories">
+        @{
+            Html.RenderAction("Menu", "Nav");
+        }
+    </div>
+    <div id="content">
+        @RenderBody()
+    </div>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+@section Scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //A little enhancement for some MVC generated tags
+
+            //Easier than creating a Html helper extension
+            $('label').addClass('control-label');
+
+            //Enhance validation summary
+            $('.validation-summary-errors')
+                .addClass('alert')
+                .addClass('alert-error')
+                .prepend('<h4 class="alert-heading">Correct the following errors and continue:</h4>')
+                .removeClass('validation-summary-errors');
+
+            $('div.control-group')
+                .has('.field-validation-error')
+                .addClass('error');
+
+            $('.field-validation-error')
+                .addClass('help-block');
+
+        });
+    </script>
+
+
+}

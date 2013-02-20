@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph Layout="Sugiyama" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="De" Bounds="269.986666666667,37.3066666666667,107.486666666667,25.96" Label="DemoStore.Core" />
+    <Node Id="DemoStore.DataAccess.EntityFramework" Bounds="251.000000000001,93.2667666666667,142.56,25.96" Label="DemoStore.DataAccess" UseManualLocation="True" />
+    <Node Id="DemoStore.WebUI" Bounds="264.453333333333,-18.6534333333333,118.553333333333,25.96" />
+  </Nodes>
+  <Links>
+    <Link Source="DemoStore.DataAccess.EntityFramework" Target="De" Bounds="322.616326956073,72.263643305244,0.544217484990043,21.0031256461721" />
+    <Link Source="DemoStore.WebUI" Target="De" Bounds="323.73,7.30656666666666,3.97903932025656E-13,21.0001" />
+  </Links>
+  <Properties>
+    <Property Id="Bounds" DataType="System.Windows.Rect" />
+    <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
+    <Property Id="Layout" DataType="System.String" />
+    <Property Id="UseManualLocation" DataType="System.Boolean" />
+  </Properties>
+</DirectedGraph>

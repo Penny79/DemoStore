@@ -1,0 +1,17 @@
+﻿@using DemoStore.WebUI.HtmlHelpers
+@using DemoStore.WebUI.HtmlHelpers
+@model DemoStore.WebUI.Models.ProductListViewModel
+
+@{
+    ViewBag.Title = "Products";
+}
+
+<h2>List</h2>
+
+@foreach (var product in Model.Products)
+{
+    Html.RenderPartial("ProductSummary", product);
+}
+<div class="pager">
+    @Html.PageLinks(Model.PagingInfo, pageNum => Url.Action("List", new { page = pageNum, category = Model.CurrentCategory })) 
+</div>

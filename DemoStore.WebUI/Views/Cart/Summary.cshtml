@@ -1,0 +1,11 @@
+﻿@model DemoStore.Core.Entities.Cart
+@{
+    Layout = null;
+}
+<div id="cart">
+    <span><b>Your cart:</b>
+        @Model.Lines.Sum(items => items.Quantity) item(s)
+        @Model.ComputeTotalValue().ToString("c")
+    </span>
+    @Html.ActionLink("Checkout Now", "Index", "Cart", new { returnUrl = Request.Url.PathAndQuery, @class="btn btn-primary" })
+</div>
